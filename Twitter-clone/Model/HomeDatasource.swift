@@ -12,7 +12,7 @@ class HomeDatasouce: Datasource {
     //build api helper to populate model with users from rails api
     let users: [User] = {
         let andresUser = User(name: "Andres", username: "@dreGuido", bioText: "Programming everyday", profileImage: #imageLiteral(resourceName: "user"))
-        let ray = User(name: "Ray Wenderlich", username: "@ray", bioText: "Tweets on programming, software, gaming", profileImage: #imageLiteral(resourceName: "user"))
+        let ray = User(name: "Ray Wenderlich", username: "@ray", bioText: "Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software", profileImage: #imageLiteral(resourceName: "user"))
         
         return [andresUser, ray]
     }()
