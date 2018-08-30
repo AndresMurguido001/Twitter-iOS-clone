@@ -11,11 +11,15 @@ import LBTAComponents
 class HomeDatasourceController: DatasourceController {
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupNavigationBarItems()
         let homeDatasouce = HomeDatasouce()
         self.datasource = homeDatasouce
     }
-
+    func setupNavigationBarItems() {
+        setupRightNavItems()
+        setupLeftNavButtonItems()
+        setupRemainingNav()
+    }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if let user = self.datasource?.item(indexPath) as? User {
