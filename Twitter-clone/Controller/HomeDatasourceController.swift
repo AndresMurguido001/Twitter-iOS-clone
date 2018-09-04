@@ -19,9 +19,12 @@ class HomeDatasourceController: DatasourceController {
         setupNavigationBarItems()
         let homeDatasouce = HomeDatasouce()
         self.datasource = homeDatasouce
+        ApiService().fetchTweets()
         collectionView?.backgroundColor = UIColor(r: 232, g: 236, b: 241)
+        
     }
     func setupNavigationBarItems() {
+        
         setupRightNavItems()
         setupLeftNavButtonItems()
         setupRemainingNav()
@@ -65,6 +68,8 @@ class HomeDatasourceController: DatasourceController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+    
     
 }
 

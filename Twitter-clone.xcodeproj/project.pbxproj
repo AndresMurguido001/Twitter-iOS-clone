@@ -19,6 +19,7 @@
 		4B71AA94212B9162001A8F2F /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B71AA93212B9162001A8F2F /* UserCell.swift */; };
 		4B9DD0EE21386CEF0046E1E9 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9DD0ED21386CEF0046E1E9 /* TweetCell.swift */; };
 		4B9DD0F021389ECA0046E1E9 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9DD0EF21389ECA0046E1E9 /* Tweet.swift */; };
+		4BA950A9213ED07C002354DD /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA950A8213ED07C002354DD /* ApiService.swift */; };
 		9DF825D2A29C0B96F67EF93A /* Pods_Twitter_clone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A6CD2862450E16BDF86BA3 /* Pods_Twitter_clone.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		4B71AA93212B9162001A8F2F /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		4B9DD0ED21386CEF0046E1E9 /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		4B9DD0EF21389ECA0046E1E9 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		4BA950A8213ED07C002354DD /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		E8A6CD2862450E16BDF86BA3 /* Pods_Twitter_clone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter_clone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 			children = (
 				4B71AA88212B3D84001A8F2F /* HomeDatasourceController.swift */,
 				4B4087B221376CC9007B0D18 /* HomeDataSourceControllerEXT.swift */,
+				4BA950A8213ED07C002354DD /* ApiService.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -226,11 +229,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Twitter-clone/Pods-Twitter-clone-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTAComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -250,6 +257,7 @@
 				4B71AA92212B8421001A8F2F /* User.swift in Sources */,
 				4B9DD0EE21386CEF0046E1E9 /* TweetCell.swift in Sources */,
 				4B71AA8E212B42F5001A8F2F /* UserHeaderFooter.swift in Sources */,
+				4BA950A9213ED07C002354DD /* ApiService.swift in Sources */,
 				4B71AA89212B3D84001A8F2F /* HomeDatasourceController.swift in Sources */,
 				4B1DF768212B20300037F7F6 /* HomeController.swift in Sources */,
 				4B71AA94212B9162001A8F2F /* UserCell.swift in Sources */,

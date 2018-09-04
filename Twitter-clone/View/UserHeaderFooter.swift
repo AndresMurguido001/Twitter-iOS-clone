@@ -27,7 +27,7 @@ class UserHeader: DatasourceCell {
         
         textLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         textLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        textLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        textLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
         textLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
     }
     
@@ -62,7 +62,7 @@ class UserFooter: DatasourceCell {
 //        backgroundColor = .white
         textLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         textLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -14).isActive = true
-        textLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        textLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
         textLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
     }
 }

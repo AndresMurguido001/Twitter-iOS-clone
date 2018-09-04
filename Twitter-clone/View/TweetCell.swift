@@ -10,6 +10,8 @@ import LBTAComponents
 
 class TweetCell: DatasourceCell {
     
+    
+    
     override var datasourceItem: Any? {
         didSet {
             guard let tweet = datasourceItem as? Tweet else { return }
@@ -25,7 +27,7 @@ class TweetCell: DatasourceCell {
             attributedText.addAttributes([NSAttributedStringKey.paragraphStyle : paragraphStyle], range: range)
             
             attributedText.append(NSAttributedString(string: tweet.message, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 15)]))
-            
+            profileImageView.image = tweet.user.profileImage
             message.attributedText = attributedText
         }
     }
@@ -74,6 +76,7 @@ class TweetCell: DatasourceCell {
     
     override func setupViews() {
         super.setupViews()
+        
         backgroundColor = .white
         separatorLineView.isHidden = false
         separatorLineView.backgroundColor = UIColor(r: 230, g: 230, b: 230)

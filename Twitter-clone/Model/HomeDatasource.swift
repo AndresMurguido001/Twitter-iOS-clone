@@ -8,8 +8,9 @@
 
 import LBTAComponents
 
+
 class HomeDatasouce: Datasource {
-    //build api helper to populate model with users from rails api
+    
     let users: [User] = {
         let andresUser = User(name: "Andres", username: "@dreGuido", bioText: "Programming everyday", profileImage: #imageLiteral(resourceName: "user"))
         let ray = User(name: "Ray Wenderlich", username: "@ray", bioText: "Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software", profileImage: #imageLiteral(resourceName: "user"))
@@ -17,9 +18,13 @@ class HomeDatasouce: Datasource {
         return [andresUser, ray]
     }()
     
+    
     let tweets: [Tweet] = {
         let tweet = Tweet(user: User(name: "Kramer", username: "@kramer", bioText: "Im Kramer", profileImage: #imageLiteral(resourceName: "kramer")), message: "Little Jerry won another cockfight today!")
-       return [tweet]
+        let tweet2=Tweet(user: User(name: "Jerry", username: "JerrySeinfeld", bioText: "Comedian from new york!", profileImage: #imageLiteral(resourceName: "jerry")), message: "Little jerry is my hero!")
+        let tweet3 = Tweet(user: User(name: "George", username: "GeorgieBoy", bioText: "I have no job, no money, and I live with my parents", profileImage: #imageLiteral(resourceName: "George")), message: "TAMALES! Little jerry ass. I won $1000. Good thing I killed susan")
+
+       return [tweet, tweet2, tweet3]
     }()
     
     override func headerClasses() -> [DatasourceCell.Type]? {
