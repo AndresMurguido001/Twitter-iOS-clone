@@ -21,9 +21,18 @@ extension HomeDatasourceController {
         titleImageView.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
         titleImageView.contentMode = .scaleAspectFit
         navigationItem.titleView = titleImageView
-        
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.isTranslucent = false
+        let navBarSeperatorView = UIView()
+        navBarSeperatorView.backgroundColor = UIColor(r: 230, g: 230, b: 230)
+        navBarSeperatorView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(navBarSeperatorView)
+        navBarSeperatorView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        navBarSeperatorView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        navBarSeperatorView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        navBarSeperatorView.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
     }
     func setupRightNavItems(){
         let searchBtn = UIButton(type: .system)
