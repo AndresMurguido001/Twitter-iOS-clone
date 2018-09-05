@@ -19,7 +19,9 @@ class HomeDatasourceController: DatasourceController {
         setupNavigationBarItems()
         let homeDatasouce = HomeDatasouce()
         self.datasource = homeDatasouce
-        ApiService().fetchTweets()
+        ApiService.sharedInstance.fetchTweets(completion: {
+            self.collectionView?.reloadData()
+        })
         collectionView?.backgroundColor = UIColor(r: 232, g: 236, b: 241)
         
     }

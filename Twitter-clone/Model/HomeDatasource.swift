@@ -11,14 +11,25 @@ import LBTAComponents
 
 class HomeDatasouce: Datasource {
     
-    let users: [User] = {
-        let andresUser = User(name: "Andres", username: "@dreGuido", bioText: "Programming everyday", profileImage: #imageLiteral(resourceName: "user"))
-        let ray = User(name: "Ray Wenderlich", username: "@ray", bioText: "Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software", profileImage: #imageLiteral(resourceName: "user"))
-        
-        return [andresUser, ray]
-    }()
+    var users = [User]()
     
+//        let andresUser = User(name: "Andres", username: "@dreGuido", bioText: "Programming everyday", profileImage: #imageLiteral(resourceName: "user"))
+//        let ray = User(name: "Ray Wenderlich", username: "@ray", bioText: "Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software", profileImage: #imageLiteral(resourceName: "user"))
+//        
+//        return [andresUser, ray]
+//    }()
+    override init() {
+        super.init()
+        fetchUserFeed()
+    }
     
+    func fetchUserFeed(){
+        ApiService.sharedInstance.fetchTweets {
+            self.users = ApiService.sharedInstance.users
+        }
+
+    }
+
     let tweets: [Tweet] = {
         let tweet = Tweet(user: User(name: "Kramer", username: "@kramer", bioText: "Im Kramer", profileImage: #imageLiteral(resourceName: "kramer")), message: "Little Jerry won another cockfight today!")
         let tweet2=Tweet(user: User(name: "Jerry", username: "JerrySeinfeld", bioText: "Comedian from new york!", profileImage: #imageLiteral(resourceName: "jerry")), message: "Little jerry is my hero!")

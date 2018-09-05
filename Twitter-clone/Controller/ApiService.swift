@@ -13,17 +13,30 @@ import SwiftyJSON
 class ApiService: NSObject {
     static let sharedInstance = ApiService()
     let baseUrl = "http://localhost:3000/users"
+    var users = [User]()
     
-    func fetchTweets(){
+    
+    func fetchTweets(completion: @escaping () -> ()){
         Alamofire.request(baseUrl).responseJSON { (response) in
             if response.result.value != nil {
-                let swifty = JSON(response.result.value)
-                var userInfo: [String: Any]
-                for user in swifty {
-                    print(user)
+                let swifty = JSON(response.result.value).array
+
+                for value in swifty! {
+                    
+                    let name = value["name"].stringValue
+                    let username = value["username"].stringValue
+                    let bioText = value["bio_text"].stringValue
+                    let profileImage = value["profile_image"].stringValue
+
+                    let user = User(name: name, username: username, bioText: bioText, profileImage: UIImage())
+                    self.users.append(user)
                 }
                 
+                completion()
             }
         }
+    }
+    func fetchUserImg(url: String) {
+        
     }
 }
