@@ -9,4 +9,5 @@ target 'Twitter-clone' do
 pod 'LBTAComponents'
 pod 'Alamofire'
 pod 'SwiftyJSON'
+pod 'AlamofireImage', '~> 3.3'
 end

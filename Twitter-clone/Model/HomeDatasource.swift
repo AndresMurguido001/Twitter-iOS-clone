@@ -18,17 +18,8 @@ class HomeDatasouce: Datasource {
 //        
 //        return [andresUser, ray]
 //    }()
-    override init() {
-        super.init()
-        fetchUserFeed()
-    }
     
-    func fetchUserFeed(){
-        ApiService.sharedInstance.fetchTweets {
-            self.users = ApiService.sharedInstance.users
-        }
 
-    }
 
     let tweets: [Tweet] = {
         let tweet = Tweet(user: User(name: "Kramer", username: "@kramer", bioText: "Im Kramer", profileImage: #imageLiteral(resourceName: "kramer")), message: "Little Jerry won another cockfight today!")

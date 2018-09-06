@@ -8,13 +8,17 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 import SwiftyJSON
+
+
 
 class ApiService: NSObject {
     static let sharedInstance = ApiService()
     let baseUrl = "http://localhost:3000/users"
     var users = [User]()
-    
+    var usersImgs = [URL]()
+    var imgFinal = [UIImage]()
     
     func fetchTweets(completion: @escaping () -> ()){
         Alamofire.request(baseUrl).responseJSON { (response) in
@@ -26,17 +30,23 @@ class ApiService: NSObject {
                     let name = value["name"].stringValue
                     let username = value["username"].stringValue
                     let bioText = value["bio_text"].stringValue
-                    let profileImage = value["profile_image"].stringValue
-
-                    let user = User(name: name, username: username, bioText: bioText, profileImage: UIImage())
-                    self.users.append(user)
+                    if let imgUrl = URL(string: value["profile_image"].stringValue) {
+                        let imgData = try? Data(contentsOf: imgUrl)
+                        
+                        
+                        let user = User(name: name, username: username, bioText: bioText, profileImage: UIImage(data: imgData!)!)
+                            
+                            self.users.append(user)
+                        
+                    }
+                    
                 }
-                
                 completion()
             }
         }
     }
-    func fetchUserImg(url: String) {
-        
-    }
+    
+    
+    
+    
 }

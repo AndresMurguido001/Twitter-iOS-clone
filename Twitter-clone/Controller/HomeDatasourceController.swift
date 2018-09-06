@@ -20,7 +20,10 @@ class HomeDatasourceController: DatasourceController {
         let homeDatasouce = HomeDatasouce()
         self.datasource = homeDatasouce
         ApiService.sharedInstance.fetchTweets(completion: {
+            homeDatasouce.users = ApiService.sharedInstance.users
+            
             self.collectionView?.reloadData()
+            
         })
         collectionView?.backgroundColor = UIColor(r: 232, g: 236, b: 241)
         
