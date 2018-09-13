@@ -7,6 +7,8 @@
 //
 
 import LBTAComponents
+import TRON
+import SwiftyJSON
 
 class HomeDatasourceController: DatasourceController {
     
@@ -17,14 +19,9 @@ class HomeDatasourceController: DatasourceController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBarItems()
-        let homeDatasouce = HomeDatasouce()
-        self.datasource = homeDatasouce
-        ApiService.sharedInstance.fetchTweets(completion: {
-            homeDatasouce.users = ApiService.sharedInstance.users
-            
-            self.collectionView?.reloadData()
-            
-        })
+        Service.sharedInstance.fetchHomeFeed { (homeDataSource) in
+            self.datasource = homeDataSource
+        }
         collectionView?.backgroundColor = UIColor(r: 232, g: 236, b: 241)
         
     }
@@ -34,6 +31,8 @@ class HomeDatasourceController: DatasourceController {
         setupLeftNavButtonItems()
         setupRemainingNav()
     }
+    
+    
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if let user = self.datasource?.item(indexPath) as? User {
@@ -48,8 +47,8 @@ class HomeDatasourceController: DatasourceController {
             let apprxWidthBioText = view.frame.width - 12 - 50 - 16
             let size = CGSize(width: apprxWidthBioText, height: 1000)
             let attr = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)]
-            let estimatedFrame = NSString(string: tweet.user.bioText).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attr, context: nil)
-            return CGSize(width: view.frame.width, height: estimatedFrame.height + 70)
+            let estimatedFrame = NSString(string: tweet.message).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attr, context: nil)
+            return CGSize(width: view.frame.width, height: estimatedFrame.height + 90)
         }
         
         

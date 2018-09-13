@@ -7,27 +7,32 @@
 //
 
 import LBTAComponents
+import TRON
+import SwiftyJSON
 
+class HomeDatasouce: Datasource, JSONDecodable {
+    // Users coming from APIService
+    let users: [User]
+    let tweets: [Tweet]
+    required init(json: JSON) throws {
 
-class HomeDatasouce: Datasource {
+        var tweets = [Tweet]()
+        let userJsonArray = json.array
+        self.users = userJsonArray!.map({ return User(json: $0)})
+        
+        for userJson in userJsonArray! {
+            let user = User(json: userJson)
+            let usersTweets = userJson["tweets"].array
+            for tweet in usersTweets! {
+                let message = tweet["message"].stringValue
+                let newTweet = Tweet(user: user, message: message)
+                tweets.append(newTweet)
+            }
+
+        }
+        self.tweets = tweets
+    }
     
-    var users = [User]()
-    
-//        let andresUser = User(name: "Andres", username: "@dreGuido", bioText: "Programming everyday", profileImage: #imageLiteral(resourceName: "user"))
-//        let ray = User(name: "Ray Wenderlich", username: "@ray", bioText: "Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software, gaming, Tweets on programming, software", profileImage: #imageLiteral(resourceName: "user"))
-//        
-//        return [andresUser, ray]
-//    }()
-    
-
-
-    let tweets: [Tweet] = {
-        let tweet = Tweet(user: User(name: "Kramer", username: "@kramer", bioText: "Im Kramer", profileImage: #imageLiteral(resourceName: "kramer")), message: "Little Jerry won another cockfight today!")
-        let tweet2=Tweet(user: User(name: "Jerry", username: "JerrySeinfeld", bioText: "Comedian from new york!", profileImage: #imageLiteral(resourceName: "jerry")), message: "Little jerry is my hero!")
-        let tweet3 = Tweet(user: User(name: "George", username: "GeorgieBoy", bioText: "I have no job, no money, and I live with my parents", profileImage: #imageLiteral(resourceName: "George")), message: "TAMALES! Little jerry ass. I won $1000. Good thing I killed susan")
-
-       return [tweet, tweet2, tweet3]
-    }()
     
     override func headerClasses() -> [DatasourceCell.Type]? {
         return [UserHeader.self]

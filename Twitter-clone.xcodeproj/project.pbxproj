@@ -86,6 +86,7 @@
 		4B1DF754212B1F580037F7F6 /* Twitter-clone */ = {
 			isa = PBXGroup;
 			children = (
+				4B752069214AE497008789B9 /* Service */,
 				4B71AA8C212B42CB001A8F2F /* View */,
 				4B71AA8B212B42C7001A8F2F /* Model */,
 				4B71AA8A212B42BF001A8F2F /* Controller */,
@@ -103,7 +104,6 @@
 			children = (
 				4B71AA88212B3D84001A8F2F /* HomeDatasourceController.swift */,
 				4B4087B221376CC9007B0D18 /* HomeDataSourceControllerEXT.swift */,
-				4BA950A8213ED07C002354DD /* ApiService.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -126,6 +126,14 @@
 				4B9DD0ED21386CEF0046E1E9 /* TweetCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4B752069214AE497008789B9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4BA950A8213ED07C002354DD /* ApiService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		85E7925F93B5417DE8F2C6BA /* Frameworks */ = {
@@ -230,16 +238,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Twitter-clone/Pods-Twitter-clone-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/TRON/TRON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTAComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TRON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -7,7 +7,6 @@ target 'Twitter-clone' do
 
   # Pods for Twitter-clone
 pod 'LBTAComponents'
-pod 'Alamofire'
-pod 'SwiftyJSON'
-pod 'AlamofireImage', '~> 3.3'
+pod 'TRON', '~> 4.0'
+
 end
