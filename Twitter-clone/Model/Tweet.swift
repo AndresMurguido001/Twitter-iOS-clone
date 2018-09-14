@@ -8,8 +8,11 @@
 
 import Foundation
 import SwiftyJSON
+import TRON
 
 struct Tweet {
+    
     let user: User
     let message: String
+    
 }
