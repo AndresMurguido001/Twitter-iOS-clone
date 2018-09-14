@@ -27,7 +27,7 @@ class TweetCell: DatasourceCell {
             attributedText.addAttributes([NSAttributedStringKey.paragraphStyle : paragraphStyle], range: range)
             
             attributedText.append(NSAttributedString(string: tweet.message, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 15)]))
-            profileImageView.image = tweet.user.profileImage
+            profileImageView.loadImage(urlString: tweet.user.profileImageUrl)
             message.attributedText = attributedText
         }
     }
@@ -64,8 +64,8 @@ class TweetCell: DatasourceCell {
         return tv
     }()
     
-    let profileImageView: UIImageView = {
-        let iv = UIImageView()
+    let profileImageView: CachedImageView = {
+        let iv = CachedImageView()
         iv.layer.cornerRadius = 5
         iv.clipsToBounds = true
         iv.image = #imageLiteral(resourceName: "kramer")

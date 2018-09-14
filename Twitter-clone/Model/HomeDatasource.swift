@@ -17,13 +17,18 @@ class HomeDatasouce: Datasource, JSONDecodable {
     required init(json: JSON) throws {
 
         var tweets = [Tweet]()
-        let userJsonArray = json.array
-        self.users = userJsonArray!.map({ return User(json: $0)})
+        guard let userJsonArray = json.array else {
+            throw NSError(domain: "localhost:3000", code: 500, userInfo: [NSLocalizedDescriptionKey : "Something went wrong hitting rails api, and getting Users JSON Array"])
+        }
+        self.users = userJsonArray.map({ return User(json: $0)})
         
-        for userJson in userJsonArray! {
+        for userJson in userJsonArray {
             let user = User(json: userJson)
-            let usersTweets = userJson["tweets"].array
-            for tweet in usersTweets! {
+            guard let usersTweets = userJson["tweets"].array else {
+                throw NSError(domain: "localhost:3000", code: 500, userInfo: [NSLocalizedDescriptionKey : "Something went wrong hitting rails api, and hitting Tweets api"])
+            }
+                
+            for tweet in usersTweets {
                 let message = tweet["message"].stringValue
                 let newTweet = Tweet(user: user, message: message)
                 tweets.append(newTweet)
