@@ -15,6 +15,7 @@ class TweetCell: DatasourceCell {
     override var datasourceItem: Any? {
         didSet {
             guard let tweet = datasourceItem as? Tweet else { return }
+            print("TWEET CELL: ", tweet.message)
             let attributedText = NSMutableAttributedString(string: tweet.user.name, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16)])
             
             let usernameString = "  \(tweet.user.username)\n"

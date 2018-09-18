@@ -21,6 +21,8 @@ class HomeDatasourceController: DatasourceController {
         return label
     }()
     
+    var selectedUser: Int = 0
+    
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         collectionViewLayout.invalidateLayout()
     }
@@ -43,15 +45,12 @@ class HomeDatasourceController: DatasourceController {
             self.datasource = homeDataSource
         }
         collectionView?.backgroundColor = UIColor(r: 232, g: 236, b: 241)
-        
     }
     func setupNavigationBarItems() {
-        
         setupRightNavItems()
         setupLeftNavButtonItems()
         setupRemainingNav()
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
@@ -94,6 +93,15 @@ class HomeDatasourceController: DatasourceController {
    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let userProfile = UserProfileController()
+        if let user = self.datasource?.item(indexPath) as? User {
+            selectedUser = user.id
+            userProfile.userId = user.id
+            dismiss(animated: false, completion: nil)
+            navigationController?.pushViewController(userProfile, animated: true)
+        }
     }
     
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension HomeDatasourceController {
+extension HomeDatasourceController: UISearchBarDelegate {
     func setupLeftNavButtonItems(){
         let followBtn = UIButton(type: .system)
         followBtn.setImage(#imageLiteral(resourceName: "follower").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -44,10 +44,44 @@ extension HomeDatasourceController {
         compose.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
         compose.contentMode = .scaleAspectFit
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: compose), UIBarButtonItem(customView: searchBtn)]
-
-
+        searchBtn.addTarget(self, action: #selector(handleSearch), for: .touchUpInside)
+        compose.addTarget(self, action: #selector(handleCompose), for: .touchUpInside)
     }
-
+    
+    
+    
+    @objc func handleCompose(){
+        let newController = NewTweetController()
+        if let navigation = self.navigationController {
+            self.dismiss(animated: false, completion: nil)
+            navigation.pushViewController(newController, animated: true)
+        }
+    }
+    
+    
+    @objc func handleSearch(){
+        let searchBar = UISearchBar()
+        view.addSubview(searchBar)
+        searchBar.alpha = 0
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
+        navigationItem.setLeftBarButton(nil, animated: true)
+        UIView.animate(withDuration: 0.5, animations: {
+            searchBar.showsCancelButton = true
+            searchBar.alpha = 1
+        }) { (finished) in
+            searchBar.becomeFirstResponder()
+        }
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        UIView.animate(withDuration: 0.5, animations: {
+            searchBar.alpha = 0
+            self.setupNavigationBarItems()
+        }) { (finished) in
+            
+        }
+    }
+    
 }
 
 

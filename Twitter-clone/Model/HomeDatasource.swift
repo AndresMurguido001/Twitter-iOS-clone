@@ -34,15 +34,14 @@ class HomeDatasouce: Datasource, JSONDecodable {
             
         }
         
-        let userTweets = userJsonArray.map({ (json) -> [Tweet] in
+        let nonEmptyTweets = userJsonArray.filter({ $0["tweets"].count > 0 })
+        let userTweets = nonEmptyTweets.map { (json) -> Tweet in
             let user = User(json: json)
-            let userTweets = json["tweets"].arrayValue
-            return userTweets.map({ (tweet) in
-                Tweet(user: user, message: tweet["message"].stringValue)
-            })
-        })
-        let newUserTweets = Array(userTweets.joined())
-        self.tweets = newUserTweets
+            let latestTweet = json["tweets"][0]
+            return Tweet(user: user, message: latestTweet["message"].stringValue)
+        }
+        
+        self.tweets = userTweets
     }
     
     

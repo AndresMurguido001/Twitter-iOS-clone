@@ -9,16 +9,15 @@
 import LBTAComponents
 
 class UserCell: DatasourceCell {
-    
+    var userId: Int = 0
     override var datasourceItem: Any? {
         didSet {
-            
             guard let user = datasourceItem as? User else { return }
             nameLabel.text = user.name
             usernameLabel.text = user.username
             bioText.text = user.bioText
-//            profileImageView.image = user.profileImage
             profileImageView.loadImage(urlString: user.profileImageUrl)
+            userId = user.id
         }
     }
     
@@ -29,8 +28,11 @@ class UserCell: DatasourceCell {
         iv.image = #imageLiteral(resourceName: "user")
         iv.contentMode = .scaleToFill
         iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.isUserInteractionEnabled = true
         return iv
     }()
+    
+    
     
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -74,6 +76,8 @@ class UserCell: DatasourceCell {
         return btn
     }()
     
+    
+    
     override func setupViews() {
         super.setupViews()
         addSubview(nameLabel)
@@ -96,6 +100,8 @@ class UserCell: DatasourceCell {
         profileImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 12).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        
         nameLabel.anchor(profileImageView.topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: followButton.leftAnchor, topConstant: 0, leftConstant: 8, bottomConstant: 0, rightConstant: 8, widthConstant: 0, heightConstant: 20)
         usernameLabel.anchor(nameLabel.bottomAnchor, left: nameLabel.leftAnchor, bottom: nil, right: nameLabel.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
         bioText.anchor(usernameLabel.bottomAnchor, left: usernameLabel.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: -4, leftConstant: -4, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)

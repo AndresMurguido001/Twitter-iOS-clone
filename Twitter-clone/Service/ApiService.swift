@@ -24,6 +24,14 @@ struct Service {
             print("Error fetching", err)
         }
     }
+    func fetchUserFeed(id: Int, completion: @escaping(UserDataSource?, Error?) -> ()){
+        let request: APIRequest<UserDataSource, JsonError> = tron.swiftyJSON.request("/users/\(id)")
+        request.perform(withSuccess: { (userDataSource) in
+            completion(userDataSource, nil)
+        }) { (err) in
+            completion(nil, err)
+        }
+    }
     
     class JsonError: JSONDecodable {
         required init(json: JSON) throws {
